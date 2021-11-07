@@ -39,7 +39,7 @@ jobs:
           docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
       - name: Deploy COI VM
         id: deploy-coi
-        uses: yc-actions/yc-coi-deploy@v1
+        uses: yc-actions/yc-coi-deploy@v1.0.1
         env:
           IMAGE_URL: cr.yandex/crpk28lsfu91rns28316/yc-coi-github-action:${{ github.sha }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
