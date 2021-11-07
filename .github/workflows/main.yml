@@ -4,6 +4,8 @@ name: Push To Yandex Cloud CR
 
 # Controls when the action will run. 
 on:
+  push:
+    branches: [ main ]
   release:
     types: [created]
 
