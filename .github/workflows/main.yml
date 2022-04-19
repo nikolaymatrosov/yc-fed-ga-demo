@@ -40,6 +40,8 @@ jobs:
           docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
           docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
   deploy:
+    needs:
+      - build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy COI VM
