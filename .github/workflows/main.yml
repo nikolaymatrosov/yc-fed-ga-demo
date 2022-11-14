@@ -48,7 +48,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Deploy COI VM
         id: deploy-coi
-        uses: yc-actions/yc-coi-deploy@v1.0.1
+        uses: yc-actions/yc-coi-deploy@v1
         env:
           IMAGE_URL: cr.yandex/crpk28lsfu91rns28316/yc-coi-github-action:${{ github.sha }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
@@ -62,5 +62,7 @@ jobs:
           vm-core-fraction: 100
           vm-zone-id: ru-central1-a
           vm-subnet-id: e9bobc1ueq7aue8csi6m
+          vm-disk-type: network-hdd
+          vm-disk-size: 64GB
           user-data-path: './user-data.yaml'
           docker-compose-path: './docker-compose.yaml'
