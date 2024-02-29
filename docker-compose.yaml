@@ -6,6 +6,16 @@ services:
     restart: always
     ports:
       - '3000:3000'
+    logging:
+      # Fluent-bit понимает логи в этом формате
+      driver: fluentd
+      options:
+        # куда посылать лог-сообщения, необходимо чтобы адрес
+        # совпадал с настройками плагина forward
+        fluentd-address: localhost:24224
+        # теги используются для маршрутизации лог-сообщений, тема
+        # маршрутизации будет рассмотрена ниже
+        tag: app.logs
   fluentbit:
     container_name: fluentbit
     # You can find the latest version of the image here:
