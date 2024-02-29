@@ -6,3 +6,17 @@ services:
     restart: always
     ports:
       - '3000:3000'
+  fluentbit:
+    container_name: fluentbit
+    # You can find the latest version of the image here:
+    # https://github.com/yandex-cloud/fluent-bit-plugin-yandex/releases
+    image: cr.yandex/yc/fluent-bit-plugin-yandex:v2.1.1-fluent-bit-2.1.7
+    ports:
+      - 24224:24224
+      - 24224:24224/udp
+    restart: always
+    environment:
+      YC_GROUP_ID: e23gnmsgn0dkr970d4he
+    volumes:
+      - /etc/fluentbit/fluentbit.conf:/fluent-bit/etc/fluent-bit.conf
+      - /etc/fluentbit/parsers.conf:/fluent-bit/etc/parsers.conf
