@@ -2,7 +2,7 @@
 
 name: Push To Yandex Cloud CR
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   push:
     branches: [ main ]
@@ -22,14 +22,18 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       # Runs a single command using the runners shell
-      - name: Yandex Cloud CR "Login" Action for GitHub Actions
-        uses: yc-actions/yc-cr-login@v2
-        with:
-          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+      - name: Get Yandex Cloud IAM token
+        id: get-iam-token
+        uses: docker://yc-actions/yc-iam-token-fed:0.0.1
 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: iam
+          password: ${{ steps.get-iam-token.outputs.access_token }}
 
       - name: Build, tag, and push image to Yandex Cloud Container Registry
         env:
