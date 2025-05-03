@@ -30,7 +30,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Get Yandex Cloud IAM token
         id: get-iam-token
-        uses: docker://ghcr.io/yc-actions/yc-iam-token-fed:0.0.2
+        uses: docker://ghcr.io/yc-actions/yc-iam-token-fed:0.0.4
         with:
           sa_id: ajep6pdp79imlp76gidn
 
