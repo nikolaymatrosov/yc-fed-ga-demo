@@ -63,6 +63,7 @@ jobs:
           IMAGE_URL: cr.yandex/crpk28lsfu91rns28316/yc-coi-github-action:${{ github.sha }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
         with:
+          yc-sa-id: ajep6pdp79imlp76gidn
           folder-id: b1gbmkj63hnlfu8877sn
           vm-name: yc-action-demo
           vm-service-account-id: ajepa75j7t2ki57l5i9m
